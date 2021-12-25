@@ -2,7 +2,34 @@
 #include<ctime>
 using namespace std;
 
-int getRandomNumber(int min, int max)
+int getRandomNumber(const int&, const int&);
+void rand_pas(int&);
+template <typename T> inline void fun(T& numLoc, const string& str);
+
+int main()
+{
+    setlocale(LC_ALL, "ASCII");
+    while (true)
+    {
+        int num = 0;
+        cout << "Enter number symbols in password: ";
+        int valueNumberSim = 0;
+        fun(valueNumberSim, "Enter correct number (1-yes, 2-no): ");
+        rand_pas(valueNumberSim);
+
+        cout << "\nRepeat? (1-yes, 2-no): ";
+        while (true) 
+        {
+            fun(num, "Enter correct number (1-yes, 2-no): ");
+            if (num == 2 || num == 1 ) break;
+            cout << "Enter correct number (1-yes, 2-no): ";
+        }
+
+        if (num == 2) break;
+    }
+}
+
+int getRandomNumber(const int& min, const int& max)
 // Генерируем рандомное число между значениями min и max.
 // Предполагается, что функцию srand() уже вызывали
 {
@@ -52,19 +79,14 @@ void rand_pas(int& valueNumberSim)
     delete[] pas_char;
 }
 
-int main()
+template <typename T>
+inline void fun(T& numLoc, const string& str)
 {
-    setlocale(LC_ALL, "ASCII");
-    int num = 1;
-    while (num == 1)
+    //if(int num lock)
+    while (!(cin >> numLoc))
     {
-        cout << "Enter number symbols in password: ";
-        int valueNumberSim = 0;
-        cin >> valueNumberSim;
-        rand_pas(valueNumberSim);
-        cout << "\nRepeat? (1-yes, 2-no): ";
-        cin >> num;
-        if (num == 2) break;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << str;
     }
 }
-
