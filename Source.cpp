@@ -1,5 +1,6 @@
 #include<iostream>
 #include<ctime>
+#include<limits>
 using namespace std;
 
 int getRandomNumber(const int&, const int&);
@@ -30,25 +31,25 @@ int main()
 }
 
 int getRandomNumber(const int& min, const int& max)
-// Генерируем рандомное число между значениями min и max.
-// Предполагается, что функцию srand() уже вызывали
+// Р“РµРЅРµСЂРёСЂСѓРµРј СЂР°РЅРґРѕРјРЅРѕРµ С‡РёСЃР»Рѕ РјРµР¶РґСѓ Р·РЅР°С‡РµРЅРёСЏРјРё min Рё max.
+// РџСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ С„СѓРЅРєС†РёСЋ srand() СѓР¶Рµ РІС‹Р·С‹РІР°Р»Рё
 {
     static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
-    // Равномерно распределяем рандомное число в нашем диапазоне
+    // Р Р°РІРЅРѕРјРµСЂРЅРѕ СЂР°СЃРїСЂРµРґРµР»СЏРµРј СЂР°РЅРґРѕРјРЅРѕРµ С‡РёСЃР»Рѕ РІ РЅР°С€РµРј РґРёР°РїР°Р·РѕРЅРµ
     return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
 void rand_pas(int& valueNumberSim)
-//функция генерирует пароль
+//С„СѓРЅРєС†РёСЏ РіРµРЅРµСЂРёСЂСѓРµС‚ РїР°СЂРѕР»СЊ
 {
     srand(time(0));
-    int specialChar[13]{ 33,35,36,37,38,43,45,47,58,59,61,63,64 };      //специальные символы (см.код символов в таблице ASCII)
-    char* pas_char = new char[valueNumberSim];      //массив символов (сам пароль)
-    int* pas_int = new int[valueNumberSim];     //массив кодов символов, входящих в пароль
+    int specialChar[13]{ 33,35,36,37,38,43,45,47,58,59,61,63,64 };      //СЃРїРµС†РёР°Р»СЊРЅС‹Рµ СЃРёРјРІРѕР»С‹ (СЃРј.РєРѕРґ СЃРёРјРІРѕР»РѕРІ РІ С‚Р°Р±Р»РёС†Рµ ASCII)
+    char* pas_char = new char[valueNumberSim];      //РјР°СЃСЃРёРІ СЃРёРјРІРѕР»РѕРІ (СЃР°Рј РїР°СЂРѕР»СЊ)
+    int* pas_int = new int[valueNumberSim];     //РјР°СЃСЃРёРІ РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ, РІС…РѕРґСЏС‰РёС… РІ РїР°СЂРѕР»СЊ
     for (int i = 0; i < valueNumberSim; i++) { pas_int[i] = 0; }
     for (int i = 0; i < valueNumberSim; i++)
-        //в цикле выбирается символ. Сначала выбирается блок ([1..9],[a..z],[A..Z],[спец_символы])
-        //затем в блоке выбирается случайный символ
+        //РІ С†РёРєР»Рµ РІС‹Р±РёСЂР°РµС‚СЃСЏ СЃРёРјРІРѕР». РЎРЅР°С‡Р°Р»Р° РІС‹Р±РёСЂР°РµС‚СЃСЏ Р±Р»РѕРє ([1..9],[a..z],[A..Z],[СЃРїРµС†_СЃРёРјРІРѕР»С‹])
+        //Р·Р°С‚РµРј РІ Р±Р»РѕРєРµ РІС‹Р±РёСЂР°РµС‚СЃСЏ СЃР»СѓС‡Р°Р№РЅС‹Р№ СЃРёРјРІРѕР»
     {
         int a = 1 + rand() % 4;
         switch (a)
@@ -69,7 +70,7 @@ void rand_pas(int& valueNumberSim)
             pas_int[i] = specialChar[a];
         }
     }
-    cout << "Your password: ";      //вывод пароля на экран
+    cout << "Your password: ";      //РІС‹РІРѕРґ РїР°СЂРѕР»СЏ РЅР° СЌРєСЂР°РЅ
     for (int i = 0; i < valueNumberSim; i++)
     {
         char pas = static_cast<char>(pas_int[i]);

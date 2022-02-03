@@ -37,6 +37,7 @@
 *.vcxproj.filters
 *.vcxproj.user
 /.vs
+/.vscode
 
 # Logs
 *.tlog
@@ -46,3 +47,6 @@
 *.pdb
 *.FileListAbsolute.txt
 *.idb
+
+# My_ignore
+/Debug
