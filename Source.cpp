@@ -82,6 +82,7 @@ void rand_pas(int& valueNumberSim)
 
 template <typename T>
 inline void fun(T& numLoc, const string& str)
+//Функция делаает ввод более устойчивым
 {
     //if(int num lock)
     while (!(cin >> numLoc))
